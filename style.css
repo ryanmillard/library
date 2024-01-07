@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+}
+
+header {
+    background-color: #04151F;
+    height: 100px;
+}
+
+h1 {
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 30px;
+    color: white;
+}
+
+main {
+    background-color: #E5E7E6;
+}
+
+.books-container {
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: auto;
+    max-width: 950px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+.book-card {
+    width: 300px;
+    height: 200px;
+    background-color: #B7B5B3;
+    border-radius: 10px;
+    border-style:outset;
+    border-width: 3px;
+    border-color: black;
+}
