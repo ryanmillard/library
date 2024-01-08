@@ -40,3 +40,18 @@ main {
     border-width: 3px;
     border-color: black;
 }
+
+.card-property {
+    display: block;
+    margin: 5px 10px;
+    /* background-color: red; */
+    font-family: 'Lato', sans-serif;
+}
+
+.book-title {
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'Courgette', sans-serif;
+    margin: 10px;
+    text-align: center;
+}
