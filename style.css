@@ -1,5 +1,14 @@
+:root {
+    --lighter-grey: #E5E7E6;
+    --card-grey: #B7B5B3;
+}
+
 body {
     margin: 0;
+}
+
+button {
+    cursor: pointer;
 }
 
 header {
@@ -12,10 +21,29 @@ h1 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     padding: 30px;
     color: white;
+    display: inline;
+    width: 50%;
+    /* background-color: red; */
 }
 
 main {
-    background-color: #E5E7E6;
+    background-color: var(--lighter-grey);
+}
+
+#heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#add-book-btn {
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    margin-right: 25px;
 }
 
 .books-container {
@@ -34,7 +62,7 @@ main {
 .book-card {
     width: 300px;
     height: 200px;
-    background-color: #B7B5B3;
+    background-color: var(--card-grey);
     border-radius: 10px;
     border-style:outset;
     border-width: 3px;
@@ -48,10 +76,81 @@ main {
     font-family: 'Lato', sans-serif;
 }
 
+.card-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 65px;
+    gap: 10px;
+}
+
+.card-btn {
+    width: 45%;
+    padding: 10px;
+    font-size: 16px;
+    background: none;
+    border: 2px black solid;
+    border-radius: 5px;
+}
+
+.read-card-btn:hover {
+    border-color: white;
+    color: white;
+}
+
+.delete-card-btn:hover {
+    border-color: #B80C09;
+    color: #B80C09;
+}
+
 .book-title {
     font-size: 25px;
     font-weight: bold;
     font-family: 'Courgette', sans-serif;
     margin: 10px;
     text-align: center;
+}
+
+h3 {
+    text-align: center;
+    font-family: 'Courgette', sans-serif;
+    font-size: 28px;
+    margin: 5px;
+}
+
+#add-book-dialog {
+    position: fixed;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--lighter-grey);
+    height: 500px;
+    width: 300px;
+    border-radius: 10px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.75);
+    display: none;
+    backdrop-filter: blur(5px);
+}
+
+.book-dialog-input {
+    width: 80%;
+    padding: 12px;
+    border-width: 1px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    border-color: var(--card-grey);
+    border-style: solid;
+    border-radius: 5px;
+    margin: 7px;
 }

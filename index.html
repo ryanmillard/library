@@ -9,8 +9,18 @@
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+    <div id="add-book-dialog" open>
+        <h3>Add New Book</h3>
+        <input type="text" class="book-dialog-input" placeholder="Title"/>
+        <input type="text" class="book-dialog-input" placeholder="Author"/>
+        <input type="number" class="book-dialog-input" placeholder="Pages"/>
+    </div>
+    <div id="overlay"></div>
     <header>
-        <h1>Book Vault</h1>
+        <div id="heading">
+            <h1>Book Vault</h1>
+            <button id="add-book-btn">Add Book</button>
+        </div>
     </header>
     <main>
         <div class="books-container">
