@@ -43,6 +43,11 @@ function createBookCard(title, author, pages, read) {
     deleteBtn.classList.add('card-btn', 'delete-card-btn');
     deleteBtn.textContent = 'Delete';
     btnContainer.append(deleteBtn);
+
+    if (read) {
+        card.classList.add('book-card-read');
+        readBtn.textContent = 'Mark Unread';   
+    }
 }
 
 function addBookToLibrary(title, author, pages, read) {

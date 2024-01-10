@@ -1,6 +1,7 @@
 :root {
     --lighter-grey: #E5E7E6;
     --card-grey: #B7B5B3;
+    --card-green: #C5D86D;
 }
 
 body {
@@ -67,6 +68,11 @@ main {
     border-style:outset;
     border-width: 3px;
     border-color: black;
+}
+
+.book-card-read {
+    background-color: var(--card-green);
+    border-color: var(--card-green);
 }
 
 .card-property {
