@@ -3,13 +3,15 @@ const overlay = document.getElementById('overlay');
 
 const myLibrary = [];
 
-function Book(title, author) {
+function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
+    this.pages = pages;
+    this.read = read;
 }
 
 function createBookCard(title, author, pages, read) {
-    let booksContainer = document.getElementsByClassName('books-container')[0];
+    let booksContainer = document.getElementById('books-container');
 
     let card = document.createElement('div');
     card.classList.add('book-card');
@@ -43,15 +45,24 @@ function createBookCard(title, author, pages, read) {
     btnContainer.append(deleteBtn);
 }
 
-function addBookToLibrary() {
-
+function addBookToLibrary(title, author, pages, read) {
+    myLibrary.push(new Book(title, author, pages, read));
+    displayBooks();
 }
 
 function displayBooks() {
-
+    let booksContainer = document.getElementById('books-container');
+    booksContainer.childNodes.forEach((child) => booksContainer.removeChild(child));
+    
+    console.log(myLibrary);
+    myLibrary.forEach((book) => {
+        console.log(book);
+        createBookCard(book.title, book.author, book.pages, book.read);
+    });
 }
 
-createBookCard('Frankenstein', 'Mary Shelley', 288, true);
+addBookToLibrary('Frankenstein', 'Mary Shelley', 288, true);
+addBookToLibrary('Nineteen Eighty-Four', 'George Orwell', 328, false);
 
 function closeAddBookDialog() {
     let addBookDialog = document.getElementById('add-book-dialog');
