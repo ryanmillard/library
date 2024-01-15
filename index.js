@@ -1,4 +1,5 @@
 const addBookButton = document.getElementById('add-book-btn');
+const addBookCancelButton = document.getElementById('add-book-cancel');
 const overlay = document.getElementById('overlay');
 
 const myLibrary = [];
@@ -68,6 +69,17 @@ function displayBooks() {
 addBookToLibrary('Frankenstein', 'Mary Shelley', 288, true);
 addBookToLibrary('Nineteen Eighty-Four', 'George Orwell', 328, false);
 
+function openAddBookDialog() {
+    let addBookDialog = document.getElementById('add-book-dialog');
+    let overlay = document.getElementById('overlay');
+    addBookDialog.style.display = 'block';
+
+    setTimeout(function() {
+        addBookDialog.style.transform = 'translate(-50%, -50%) scale(1)';
+        overlay.style.display = 'block';
+    }, 100);
+}
+
 function closeAddBookDialog() {
     let addBookDialog = document.getElementById('add-book-dialog');
     let overlay = document.getElementById('overlay');
@@ -80,15 +92,10 @@ function closeAddBookDialog() {
     }, 200);
 }
 
-addBookButton.addEventListener('click', () => {
-    let addBookDialog = document.getElementById('add-book-dialog');
-    let overlay = document.getElementById('overlay');
-    addBookDialog.style.display = 'flex';
+document.forms["add_book"].onsubmit = function() {
+    
+}
 
-    setTimeout(function() {
-        addBookDialog.style.transform = 'translate(-50%, -50%) scale(1)';
-        overlay.style.display = 'block';
-    }, 100);
-});
-
+addBookButton.addEventListener('click', () => openAddBookDialog());
 overlay.addEventListener('click', () => closeAddBookDialog());
+addBookCancelButton.addEventListener('click', () => closeAddBookDialog());

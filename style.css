@@ -3,7 +3,8 @@
     --card-grey: #dfdfdf;
     --card-green: #C5D86D;
     --delete-red: #e4706e;
-    --read-blue: #80b3d4;
+    --card-btn-grey: #bebebe;
+    --read-blue: #75afd6;
 }
 
 body {
@@ -31,6 +32,17 @@ h1 {
 
 main {
     background-color: var(--lighter-grey);
+}
+
+form {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 #heading {
@@ -89,15 +101,15 @@ main {
 .card-btn {
     width: 45%;
     padding: 10px;
-    font-size: 16px;
-    background: none;
-    border: 2px black solid;
+    font-size: 15px;
     border-radius: 5px;
+    background-color: var(--card-btn-grey);
+    border: none;
 }
 
 .read-card-btn {
-    border-color: var(--read-blue);
-    background-color: var(--read-blue);
+    border-color: var(--card-btn-grey);
+    background-color: var(--card-btn-grey);
 }
 
 .delete-card-btn {
@@ -128,13 +140,10 @@ h3 {
     transform: translate(-50%, -50%) scale(0);
     transition: 0.2s ease-in-out;
     background-color: var(--lighter-grey);
-    height: 500px;
+    height: 425px;
     width: 300px;
     display: none;
     border-radius: 10px;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
 }
 
 #overlay {
@@ -143,7 +152,7 @@ h3 {
     height: 100%;
     background-color: rgba(0,0,0,0.75);
     display: none;
-    backdrop-filter: blur(5px);
+    /* backdrop-filter: blur(5px); */
 }
 
 .book-dialog-input {
@@ -157,3 +166,33 @@ h3 {
     border-radius: 5px;
     margin: 7px;
 }
+
+#add-book-is-read {
+    width: 17px;
+    height: 17px;
+}
+
+#add-book-is-read {
+    accent-color: var(--card-green);
+}
+
+label {
+    font-family: 'Courier New', Courier, monospace;
+    margin: 7px;
+}
+
+#add-book-dialog > form > button {
+    width: 80%;
+    padding: 12px;
+    margin: 7px;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--card-btn-grey);
+}
+
+#add-book-dialog > form > button[type="submit"] {
+    background-color: var(--card-green);
+    margin-top: 20px;
+}
+
