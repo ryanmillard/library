@@ -1,7 +1,9 @@
 :root {
-    --lighter-grey: #E5E7E6;
-    --card-grey: #B7B5B3;
+    --lighter-grey: #f1f1f1;
+    --card-grey: #dfdfdf;
     --card-green: #C5D86D;
+    --delete-red: #e4706e;
+    --read-blue: #80b3d4;
 }
 
 body {
@@ -63,16 +65,10 @@ main {
 .book-card {
     width: 300px;
     height: 200px;
+    padding: 5px;
     background-color: var(--card-grey);
     border-radius: 10px;
-    border-style:outset;
-    border-width: 3px;
-    border-color: black;
-}
-
-.book-card-read {
-    background-color: var(--card-green);
-    border-color: var(--card-green);
+    border-style: none;
 }
 
 .card-property {
@@ -99,14 +95,14 @@ main {
     border-radius: 5px;
 }
 
-.read-card-btn:hover {
-    border-color: white;
-    color: white;
+.read-card-btn {
+    border-color: var(--read-blue);
+    background-color: var(--read-blue);
 }
 
-.delete-card-btn:hover {
-    border-color: #B80C09;
-    color: #B80C09;
+.delete-card-btn {
+    border-color: var(--delete-red);
+    background-color: var(--delete-red);
 }
 
 .book-title {
@@ -129,12 +125,13 @@ h3 {
     z-index: 1;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: 0.2s ease-in-out;
     background-color: var(--lighter-grey);
     height: 500px;
     width: 300px;
-    border-radius: 10px;
     display: none;
+    border-radius: 10px;
     align-items: center;
     justify-content: center;
     flex-direction: column;

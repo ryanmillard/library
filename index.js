@@ -26,7 +26,7 @@ function createBookCard(title, author, pages, read) {
     }
 
     createCardProperty(title, true);
-    createCardProperty(`By ${author}`);
+    createCardProperty(`By: ${author}`);
     createCardProperty(`Total Pages: ${pages}`);
     createCardProperty(`Status: ${read ? 'Read' : 'Not Read'}`);
 
@@ -45,7 +45,6 @@ function createBookCard(title, author, pages, read) {
     btnContainer.append(deleteBtn);
 
     if (read) {
-        card.classList.add('book-card-read');
         readBtn.textContent = 'Mark Unread';   
     }
 }
@@ -72,17 +71,24 @@ addBookToLibrary('Nineteen Eighty-Four', 'George Orwell', 328, false);
 function closeAddBookDialog() {
     let addBookDialog = document.getElementById('add-book-dialog');
     let overlay = document.getElementById('overlay');
-    addBookDialog.style.display = 'none';
+    addBookDialog.style.transform = 'translate(-50%, -50%) scale(0)';
+    addBookDialog.classList.remove('active-dialog');
     overlay.style.display = 'none';
+
+    setTimeout(function() {
+        addBookDialog.style.display = 'none';
+    }, 200);
 }
 
 addBookButton.addEventListener('click', () => {
     let addBookDialog = document.getElementById('add-book-dialog');
     let overlay = document.getElementById('overlay');
     addBookDialog.style.display = 'flex';
-    overlay.style.display = 'block';
+
+    setTimeout(function() {
+        addBookDialog.style.transform = 'translate(-50%, -50%) scale(1)';
+        overlay.style.display = 'block';
+    }, 100);
 });
 
-overlay.addEventListener('click', () => {
-    closeAddBookDialog();
-});
+overlay.addEventListener('click', () => closeAddBookDialog());
