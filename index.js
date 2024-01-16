@@ -2,7 +2,9 @@ const addBookButton = document.getElementById('add-book-btn');
 const addBookCancelButton = document.getElementById('add-book-cancel');
 const overlay = document.getElementById('overlay');
 
-const myLibrary = [];
+const addBookForm = document.forms["add_book"];
+
+var myLibrary = [];
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -46,24 +48,15 @@ function createBookCard(title, author, pages, read) {
     btnContainer.append(deleteBtn);
 
     if (read) {
-        readBtn.textContent = 'Mark Unread';   
+        readBtn.textContent = 'Mark Unread';  
+        readBtn.style.backgroundColor = 'var(--card-green)'; 
     }
 }
 
 function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read));
-    displayBooks();
-}
-
-function displayBooks() {
-    let booksContainer = document.getElementById('books-container');
-    booksContainer.childNodes.forEach((child) => booksContainer.removeChild(child));
-    
-    console.log(myLibrary);
-    myLibrary.forEach((book) => {
-        console.log(book);
-        createBookCard(book.title, book.author, book.pages, book.read);
-    });
+    console.log(myLibrary[myLibrary.length-1])
+    createBookCard(title, author, pages, read);
 }
 
 addBookToLibrary('Frankenstein', 'Mary Shelley', 288, true);
@@ -92,8 +85,22 @@ function closeAddBookDialog() {
     }, 200);
 }
 
-document.forms["add_book"].onsubmit = function() {
+addBookForm.onsubmit = function(event) {
+    console.log("submitted!!")
+    let title = document.getElementById('add-book-title').value;
+    let author = document.getElementById('add-book-author').value;
+    let pages = parseInt(document.getElementById('add-book-pages').value);
+    let isRead = document.getElementById('add-book-is-read').checked;
     
+    // Validate input
+    if (!(title.length === 0 || author.length === 0 || pages === NaN)) {
+        addBookToLibrary(title, author, pages, isRead);
+    }
+
+    // Reset form and close it
+    event.preventDefault(); // Prevents page from reloading
+    closeAddBookDialog();
+    addBookForm.reset();
 }
 
 addBookButton.addEventListener('click', () => openAddBookDialog());
