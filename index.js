@@ -13,8 +13,20 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-function createBookCard(title, author, pages, read) {
+function getBookIndex(title, author) {
+    for (let i = 0; i < myLibrary.length; i++) {
+        if (myLibrary[i].title === title && myLibrary[i].author === author) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+function createBookCard(index) {
     let booksContainer = document.getElementById('books-container');
+
+    let book = myLibrary[index];
 
     let card = document.createElement('div');
     card.classList.add('book-card');
@@ -28,10 +40,10 @@ function createBookCard(title, author, pages, read) {
         card.append(property);
     }
 
-    createCardProperty(title, true);
-    createCardProperty(`By: ${author}`);
-    createCardProperty(`Total Pages: ${pages}`);
-    createCardProperty(`Status: ${read ? 'Read' : 'Not Read'}`);
+    createCardProperty(book.title, true);
+    createCardProperty(`By: ${book.author}`);
+    createCardProperty(`Total Pages: ${book.pages}`);
+    createCardProperty(`Status: ${book.read ? 'Read' : 'Not Read'}`);
 
     let btnContainer = document.createElement('div');
     btnContainer.classList.add('card-btn-container');
@@ -47,16 +59,34 @@ function createBookCard(title, author, pages, read) {
     deleteBtn.textContent = 'Delete';
     btnContainer.append(deleteBtn);
 
-    if (read) {
+    if (book.read) {
         readBtn.textContent = 'Mark Unread';  
         readBtn.style.backgroundColor = 'var(--card-green)'; 
     }
+
+    deleteBtn.addEventListener('click', () => {
+        removeBookFromLibrary(getBookIndex(book.title, book.author));
+    });
 }
 
 function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read));
     console.log(myLibrary[myLibrary.length-1])
-    createBookCard(title, author, pages, read);
+    createBookCard(myLibrary.length-1);
+}
+
+function removeBookFromLibrary(index) {
+    let booksContainer = document.getElementById('books-container');
+
+    myLibrary.splice(index, 1);
+
+    let child = booksContainer.childNodes[index];
+    child.style.transition = "0.2s ease-in-out";
+    child.style.transform = "scale(0)";
+
+    setTimeout(function() {
+        booksContainer.removeChild(booksContainer.childNodes[index]);
+    }, 200);
 }
 
 addBookToLibrary('Frankenstein', 'Mary Shelley', 288, true);
@@ -86,9 +116,8 @@ function closeAddBookDialog() {
 }
 
 addBookForm.onsubmit = function(event) {
-    console.log("submitted!!")
-    let title = document.getElementById('add-book-title').value;
-    let author = document.getElementById('add-book-author').value;
+    let title = document.getElementById('add-book-title').value.trim();
+    let author = document.getElementById('add-book-author').value.trim();
     let pages = parseInt(document.getElementById('add-book-pages').value);
     let isRead = document.getElementById('add-book-is-read').checked;
     

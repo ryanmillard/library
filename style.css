@@ -22,7 +22,7 @@ header {
 
 h1 {
     margin: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Courgette', Verdana, Geneva, Tahoma, sans-serif;
     padding: 30px;
     color: white;
     display: inline;
@@ -66,7 +66,8 @@ form {
     padding-top: 20px;
     padding-bottom: 20px;
     margin: auto;
-    max-width: 950px;
+    min-height: calc(100vh - 140px);
+    max-width: 1000px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -123,6 +124,8 @@ form {
     font-family: 'Courgette', sans-serif;
     margin: 10px;
     text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 h3 {
