@@ -2,6 +2,11 @@ const addBookButton = document.getElementById('add-book-btn');
 const addBookCancelButton = document.getElementById('add-book-cancel');
 const overlay = document.getElementById('overlay');
 
+const addBookTitle = document.getElementById('add-book-title');
+const addBookAuthor = document.getElementById('add-book-author');
+const addBookPages = document.getElementById('add-book-pages');
+const addBookIsRead = document.getElementById('add-book-is-read');
+
 const addBookForm = document.forms["add_book"];
 
 var myLibrary = [];
@@ -118,18 +123,21 @@ function closeAddBookDialog() {
 }
 
 addBookForm.onsubmit = function(event) {
-    let title = document.getElementById('add-book-title').value.trim();
-    let author = document.getElementById('add-book-author').value.trim();
-    let pages = parseInt(document.getElementById('add-book-pages').value);
-    let isRead = document.getElementById('add-book-is-read').checked;
-    
+    event.preventDefault(); // Prevents page from reloading
+
+    if (!addBookTitle.checkValidity()) return;
+
+    let title = addBookTitle.value.trim();
+    let author = addBookAuthor.value.trim();
+    let pages = parseInt(addBookPages.value);
+    let isRead = addBookIsRead.checked;
+
     // Validate input
     if (!(title.length === 0 || author.length === 0 || pages === NaN)) {
         addBookToLibrary(title, author, pages, isRead);
     }
 
     // Reset form and close it
-    event.preventDefault(); // Prevents page from reloading
     closeAddBookDialog();
     addBookForm.reset();
 }
